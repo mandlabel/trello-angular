@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Board } from 'src/app/models/board.model';
 import { Column } from 'src/app/models/column.modul';
-
+import { Todo } from 'src/app/models/todo.modul';
 @Component({
   selector: 'app-main-view',
   templateUrl: './main-view.component.html',
@@ -10,27 +10,29 @@ import { Column } from 'src/app/models/column.modul';
 })
 export class MainViewComponent {
 
-
+  todos : Todo[] = [];
   board: Board = new Board('Test Board', [
-    new Column('TODO', [
-      'Test item 1',
-      'Test item 2'
-    ]),
-    new Column('DOING', [
-      'Test item 3',
-      'Test item 4'
-    ]),
-    new Column('VERIFY', [
-      'Test item 5',
-      'Test item 6'
-    ]),
-    new Column('DONE', [
-      'Test item 7',
-      'Test item 8'
-    ]),
+    new Column('TODO', this.todos),
+    new Column('DOING', []),
+    new Column('VERIFY', []),
+    new Column('DONE', []),
   ]);
 
-  drop(event: CdkDragDrop<string[]>) {
+  newTodo : string;
+  saveTodo() {
+    if(this.newTodo) {
+      let todo = new Todo();
+      todo.name = this.newTodo;
+      this.todos.push(todo);
+      this.newTodo = '';
+    } else {
+      alert('Please enter Todo!')
+    }
+  }
+
+  drop(event: CdkDragDrop<Todo[]>) {
+
+    console.log('Container elements: ' + event.container.data);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
