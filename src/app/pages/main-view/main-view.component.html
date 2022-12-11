@@ -10,8 +10,8 @@
         <div class="board-bar">
             <p class="board-name">Board Name</p>
 
-            <input type="text" aria-describedby="add-button" [(ngModel)]="newTodo">
-            <button id="add-button" class="btn btn-primary" (click)="saveTodo()">Add Todo</button>
+            <input class="add-todo-input" placeholder="Enter Todo..." type="text" aria-describedby="add-button" [(ngModel)]="newTodo">
+            <button id="add-button" class="add-todo-button" (click)="saveTodo()">Add Todo</button>
         </div>
 
         <div class="board-wrapper">
@@ -25,6 +25,8 @@
                     >
                         <div class="task" *ngFor="let item of column.tasks" cdkDrag>
                             {{ item.name }}
+
+                            <button id="rm-button" class="rm-todo-button" (click)="rmTodo(item)">Remove element</button>
                         </div>
                     </div>
                 </div>

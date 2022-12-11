@@ -30,6 +30,11 @@ export class MainViewComponent {
     }
   }
 
+  rmTodo(todo: Todo) {
+    this.todos = this.todos.filter(t => t.name !== todo.name);
+    console.log(JSON.stringify(this.todos));
+  }
+
   drop(event: CdkDragDrop<Todo[]>) {
 
     console.log('Container elements: ' + event.container.data);
