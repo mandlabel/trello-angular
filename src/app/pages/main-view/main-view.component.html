@@ -26,7 +26,7 @@
                         <div class="task" *ngFor="let item of column.tasks" cdkDrag>
                             {{ item.name }}
 
-                            <button id="rm-button" class="rm-todo-button" (click)="rmTodo(item)">Remove element</button>
+                            <button id="rm-button" class="rm-todo-button" (click)="rmTodo(item, column)">Remove element</button>
                         </div>
                     </div>
                 </div>

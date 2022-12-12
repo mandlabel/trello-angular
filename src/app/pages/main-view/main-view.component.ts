@@ -10,9 +10,8 @@ import { Todo } from 'src/app/models/todo.modul';
 })
 export class MainViewComponent {
 
-  todos : Todo[] = [];
   board: Board = new Board('Test Board', [
-    new Column('TODO', this.todos),
+    new Column('TODO', []),
     new Column('DOING', []),
     new Column('VERIFY', []),
     new Column('DONE', []),
@@ -23,16 +22,17 @@ export class MainViewComponent {
     if(this.newTodo) {
       let todo = new Todo();
       todo.name = this.newTodo;
-      this.todos.push(todo);
+      const searchColumn = this.board.columns.filter((col) => col.name === 'TODO');
+      searchColumn[0].tasks.push(todo);
       this.newTodo = '';
     } else {
-      alert('Please enter Todo!')
+      alert('Please enter Todo!');
     }
   }
 
-  rmTodo(todo: Todo) {
-    this.todos = this.todos.filter(t => t.name !== todo.name);
-    console.log(JSON.stringify(this.todos));
+  rmTodo(todo: Todo, column: Column) {
+    const searchColumn = this.board.columns.filter((col) => col.name === column.name);
+    searchColumn[0].setColumnTasks(searchColumn[0].tasks.filter(t => t.name !== todo.name));
   }
 
   drop(event: CdkDragDrop<Todo[]>) {
