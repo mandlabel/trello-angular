@@ -7,19 +7,12 @@ import { MainViewComponent } from './pages/main-view/main-view.component';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
+import { ModifyDialogComponent } from './pages/modify-dialog/modify-dialog.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MainViewComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    DragDropModule,
-    FormsModule,
-  ],
+  declarations: [AppComponent, MainViewComponent, ModifyDialogComponent],
+  imports: [BrowserModule, AppRoutingModule, DragDropModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
