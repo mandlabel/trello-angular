@@ -34,20 +34,8 @@
           >
             <div class="task" *ngFor="let item of column.tasks" cdkDrag>
               {{ item.name }}
-              <button
-                id="rm-button"
-                class="rm-todo-button"
-                (click)="rmTodo(item, column)"
-              >
-                Remove element
-              </button>
-              <button
-                id="rm-button"
-                class="rm-todo-button"
-                (click)="rmTodo(item, column)"
-              >
-                Modify element
-              </button>
+              <mat-icon (click)="rmTodo(item, column)" aria-hidden="false" aria-label="Remove icon" fontIcon="delete"></mat-icon>
+              <mat-icon (click)="openDialog(item, column)" aria-hidden="false" aria-label="Modify icon" fontIcon="edit"></mat-icon>
             </div>
           </div>
         </div>
