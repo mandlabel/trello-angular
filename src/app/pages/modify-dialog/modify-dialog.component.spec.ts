@@ -1,22 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { ModifyDialogComponent } from './modify-dialog.component';
+import { ModifyDialogComponent } from './modify-dialog.component'
 
 describe('DialogOverviewExample', () => {
   let component: ModifyDialogComponent;
   let fixture: ComponentFixture<ModifyDialogComponent>;
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [ModifyDialogComponent],
+        }).compileComponents()
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ModifyDialogComponent],
-    }).compileComponents();
+        fixture = TestBed.createComponent(ModifyDialogComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
-    fixture = TestBed.createComponent(ModifyDialogComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    it('should create', () => {
+        expect(component).toBeTruthy()
+    })
+})

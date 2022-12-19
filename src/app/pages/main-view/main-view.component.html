@@ -1,27 +1,30 @@
 <div class="root">
-  <div class="navbar has-background-dark">
-    <div class="navbar-brand">
-      <div class="navbar-item">
-        <h1 class="app-name has-gradient-text">TRELLO</h1>
-      </div>
+    <div class="navbar has-background-dark">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <h1 class="app-name has-gradient-text">TRELLO</h1>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="board">
-    <div class="board-bar">
-      <p class="board-name">Board Name</p>
+    <div class="board">
+        <div class="board-bar">
+            <p class="board-name">Board Name</p>
 
-      <input
-        class="add-todo-input"
-        placeholder="Enter Todo..."
-        type="text"
-        aria-describedby="add-button"
-        [(ngModel)]="newTodo"
-      />
-      <button id="add-button" class="add-todo-button" (click)="saveTodo()">
-        Add Todo
-      </button>
-    </div>
-
+            <input
+                class="add-todo-input"
+                placeholder="Enter Todo..."
+                type="text"
+                aria-describedby="add-button"
+                [(ngModel)]="newTodo"
+            />
+            <button
+                id="add-button"
+                class="add-todo-button"
+                (click)="saveTodo()"
+            >
+                Add Todo
+            </button>
+        </div>
     <div class="board-wrapper">
       <div class="board-columns" cdkDropListGroup>
         <div class="board-column" *ngFor="let column of board.columns">
@@ -37,9 +40,6 @@
               <mat-icon (click)="rmTodo(item, column)" aria-hidden="false" aria-label="Remove icon" fontIcon="delete"></mat-icon>
               <mat-icon (click)="openDialog(item, column)" aria-hidden="false" aria-label="Modify icon" fontIcon="edit"></mat-icon>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
