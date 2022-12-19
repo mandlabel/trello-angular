@@ -1,13 +1,13 @@
-import { Todo } from './todo.modul';
+import { Todo } from './todo.modul'
 
 export class Column {
-  constructor(public name: string, public tasks: Todo[]) {}
+    constructor(public name: string, public tasks: Todo[]) {}
 
-  getColumnTasks() {
-    return this.tasks;
-  }
+    getColumnTasks() {
+        return this.tasks
+    }
 
-  setColumnTasks(columnTasks: Todo[]) {
-    this.tasks = columnTasks;
-  }
+    setColumnTasks(columnTasks: Todo[]) {
+        this.tasks = columnTasks
+    }
 }

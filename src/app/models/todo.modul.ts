@@ -1,3 +1,3 @@
 export class Todo {
-  name: String;
+    name: String
 }
