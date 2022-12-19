@@ -1,24 +1,55 @@
-import { Component } from '@angular/core'
+import { Component } from '@angular/core';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+
 import {
-    CdkDragDrop,
-    moveItemInArray,
-    transferArrayItem,
-} from '@angular/cdk/drag-drop'
-import { Board } from 'src/app/models/board.model'
-import { Column } from 'src/app/models/column.modul'
-import { Todo } from 'src/app/models/todo.modul'
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
+
+import { Board } from 'src/app/models/board.model';
+import { Column } from 'src/app/models/column.modul';
+import { Todo } from 'src/app/models/todo.modul';
+import { ModifyDialogComponent } from '../modify-dialog/modify-dialog.component'
 @Component({
     selector: 'app-main-view',
     templateUrl: './main-view.component.html',
     styleUrls: ['./main-view.component.scss'],
 })
+
 export class MainViewComponent {
-    board: Board = new Board('Test Board', [
-        new Column('TODO', []),
-        new Column('DOING', []),
-        new Column('VERIFY', []),
-        new Column('DONE', []),
-    ])
+
+  constructor(public dialog: MatDialog) { }
+
+  new_todo_value: string;
+
+  openDialog(todo: Todo, column: Column): void {
+    const dialogRef = this.dialog.open(ModifyDialogComponent, {
+      data: {name: todo.name, new_todo_value: this.new_todo_value},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.new_todo_value = result;
+      
+      const searchColumn = this.board.columns.filter(
+        (col) => col.name === column.name
+      );
+
+      const modifiedItem = searchColumn[0].tasks.indexOf(todo);
+      searchColumn[0].tasks[modifiedItem].name = this.new_todo_value; 
+
+      alert('Updated Todo successfully!')
+
+    });
+  }
+
+  board: Board = new Board('Test Board', [
+    new Column('TODO', []),
+    new Column('DOING', []),
+    new Column('VERIFY', []),
+    new Column('DONE', []),
+  ]);
 
     newTodo: string
     saveTodo() {
