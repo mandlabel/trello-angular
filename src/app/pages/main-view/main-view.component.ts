@@ -52,11 +52,16 @@ export class MainViewComponent {
   ]);
 
     newTodo: string
+    newTodoColor: string
+
     saveTodo() {
         if (this.newTodo) {
-            let todo = new Todo()
+            const todo = new Todo()
 
             todo.name = this.newTodo
+            todo.color = this.newTodoColor
+
+
             const searchColumn = this.board.columns.filter(
                 (col) => col.name === 'TODO'
             )
@@ -67,7 +72,8 @@ export class MainViewComponent {
                 return alert('Todo already exists!')
             searchColumn[0].tasks.push(todo)
 
-            this.newTodo = ''
+            this.newTodo = '';
+            this.newTodoColor = '';
         } else {
             alert('Please enter Todo!')
         }

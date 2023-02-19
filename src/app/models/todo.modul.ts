@@ -1,3 +1,7 @@
 export class Todo {
-    name: String
+    name: string
+    color: string
+    description: string
+    deadline: Date
+    comments: string[]
 }

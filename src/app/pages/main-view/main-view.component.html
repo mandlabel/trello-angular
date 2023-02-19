@@ -12,11 +12,23 @@
 
             <input
                 class="add-todo-input"
-                placeholder="Enter Todo..."
+                placeholder="Enter task title..."
                 type="text"
                 aria-describedby="add-button"
                 [(ngModel)]="newTodo"
             />
+
+            <textarea
+                class="add-todo-input"
+                placeholder="Enter description..."
+                aria-describedby="add-button"
+                [(ngModel)]="newTodo"
+                rows="3"
+                cols="50"
+            ></textarea>
+
+            <input [(ngModel)]="newTodoColor" type="color" id="colorpicker" value="#0000ff">
+            
             <button
                 id="add-button"
                 class="add-todo-button"
@@ -35,7 +47,7 @@
             [cdkDropListData]="column.tasks"
             (cdkDropListDropped)="drop($event)"
           >
-            <div class="task" *ngFor="let item of column.tasks" cdkDrag>
+            <div class="task" [ngStyle]="{'background-color': item.color}" *ngFor="let item of column.tasks" cdkDrag>
               {{ item.name }}
               <mat-icon (click)="rmTodo(item, column)" aria-hidden="false" aria-label="Remove icon" fontIcon="delete"></mat-icon>
               <mat-icon (click)="openDialog(item, column)" aria-hidden="false" aria-label="Modify icon" fontIcon="edit"></mat-icon>
